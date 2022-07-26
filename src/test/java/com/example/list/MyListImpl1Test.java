@@ -1,0 +1,178 @@
+package com.example.list;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class MyListImpl1Test {
+    static final String PRIMERO = "Hola, soy el primero";
+    static final String SEGUNDO = "Hola, soy el 2";
+    MyList<String> myList;
+
+    @BeforeEach
+    public void setupBefore() {
+        myList = new MyListImpl1<>();
+    }
+
+    @Test
+    void createEmptyListOk() {
+        assertEquals(0, myList.size());
+    }
+
+    @Test
+    void addElementOK() {
+        prepareContextSingleFile();
+        assertEquals(1, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+    }
+
+    @Test
+    void addElementErrorSize() {
+        prepareContextSingleFile();
+        assertNotEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+    }
+
+    @Test
+    void addElementErrorContains() {
+        prepareContextSingleFile();
+        assertEquals(1, myList.size());
+        assertFalse(myList.contains("A"));
+    }
+
+    @Test
+    void addMultipleElementOK() {
+        prepareContextMultipleFile();
+        //Assert
+        assertEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+    }
+
+    @Test
+    void addMUltipleElementErrorSize() {
+        prepareContextMultipleFile();
+        //Assert
+        assertNotEquals(3, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+    }
+
+    @Test
+    void addMUltipleElementErrorContains() {
+        prepareContextMultipleFile();
+        //Assert
+        assertEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+        assertFalse(myList.contains("aaaa"));
+    }
+
+    @Test
+    void addMultipleElementOKWithFor() {
+        for (int i = 0; i < 88; i++) {
+            myList.add("A" + i);
+        }
+        //Assert
+        assertEquals(88, myList.size());
+        System.out.println(myList);
+    }
+
+    @Test
+    void addMultipleElementOKGrowth() {
+        for (int i = 0; i < 100; i++) {
+            myList.add("A" + i);
+        }
+        //Assert
+        assertEquals(100, myList.size());
+        System.out.println(myList);
+    }
+
+    @Test
+    void RemoveMultipleElementOK() {
+        prepareContextMultipleFile();
+        assertEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+        myList.remove(0);
+        assertEquals(1, myList.size());
+        assertFalse(myList.contains(PRIMERO));
+    }
+
+    @Test
+    void RemoveMultipleElementError() {
+        prepareContextMultipleFile();
+        assertEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+        myList.remove(0);
+        assertNotEquals(2, myList.size());
+        assertFalse(myList.contains(PRIMERO));
+    }
+
+    @Test
+    void RemoveMultipleElementChangingState() {
+        prepareContextMultipleFile();
+        assertEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+        myList.remove(0);
+        assertEquals(1, myList.size());
+        assertFalse(myList.contains(PRIMERO));
+        prepareContextSingleFile();
+        assertTrue(myList.contains(PRIMERO));
+    }
+
+    @Test
+    void RemoveAllOk() {
+        prepareContextMultipleFile();
+        assertEquals(2, myList.size());
+        assertTrue(myList.contains(PRIMERO));
+        assertTrue(myList.contains(SEGUNDO));
+        myList.removeAll();
+        assertEquals(0, myList.size());
+        assertFalse(myList.contains(PRIMERO));
+    }
+
+    @Test
+    void RemoveAllEmpty() {
+        myList.removeAll();
+        assertEquals(0, myList.size());
+        assertFalse(myList.contains(PRIMERO));
+    }
+
+    @Test
+    public void whenExceptionThrown_thenAssertionSucceedsINexistentElement() {
+        int prueba = 50;
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            myList.remove(prueba);
+        });
+
+        String expectedMessage = String.format("There is no element into %s", prueba);
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void whenExceptionThrown_thenAssertionSucceedsNegativeElement() {
+        int prueba = -100;
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            myList.remove(prueba);
+        });
+
+        String expectedMessage = "The position can not be negative";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+    void prepareContextSingleFile() {
+        myList.add(PRIMERO);
+    }
+
+    void prepareContextMultipleFile() {
+        myList.add(PRIMERO);
+        myList.add(SEGUNDO);
+    }
+}
