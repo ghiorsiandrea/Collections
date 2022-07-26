@@ -1,5 +1,7 @@
 package com.example.map;
 
+import com.example.list.MyListImpl1;
+
 import java.util.Map;
 
 public interface MyMap<K , V > {
@@ -127,7 +129,7 @@ public interface MyMap<K , V > {
      * @throws IllegalArgumentException if some property of a key or value in
      *         the specified map prevents it from being stored in this map
      */
-    void putAll(Map<? extends K, ? extends V> m);
+    void putAll(MyMap<? extends K, ? extends V> m);
 
     /**
      * Removes all of the mappings from this map (optional operation).

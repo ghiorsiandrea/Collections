@@ -1,13 +1,27 @@
 package com.example.map;
+
+import com.example.list.MyList;
+import com.example.list.MyListImpl1;
+
 import java.util.Map;
-import java.util.Optional;
 
 public class MyMapImpl1<K, V> implements MyMap<K, V> {
-//(Objects.equals(PRIMERO, myQueue.peek())
+
+
+    private final MyList<K> keys;
+
+    private final MyList<V> values;
+
+    public MyMapImpl1() {
+        this.keys = new MyListImpl1<>();
+        this.values = new MyListImpl1<>();
+    }
+
+    // ......................................................................................
 
     @Override
     public int size() {
-        return 0;
+        return keys.size() ;
     }
 
     @Override
@@ -44,7 +58,7 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     }
 
     @Override
-    public void putAll(Map<? extends K, ? extends V> m) {
+    public void putAll(MyMap<? extends K, ? extends V> m) {
 
     }
 
@@ -52,8 +66,6 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     public void clear() {
 
     }
-
-
 
 
 }
