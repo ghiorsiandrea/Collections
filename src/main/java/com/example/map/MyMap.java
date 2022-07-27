@@ -33,7 +33,7 @@ public interface MyMap<K , V > {
      * key.
      */
 
-    boolean containsKey(Object key);
+    boolean containsKey(K key);
 
     /**
      * Returns {@code true} if this map maps one or more keys to the
@@ -43,7 +43,7 @@ public interface MyMap<K , V > {
      * @return {@code true} if this map maps one or more keys to the
      *         specified value
      */
-    boolean containsValue(Object value);
+    boolean containsValue(V value);
 
     /**
      * {@inheritDoc}
