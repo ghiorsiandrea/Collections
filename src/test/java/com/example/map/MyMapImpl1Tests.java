@@ -1,6 +1,10 @@
 package com.example.map;
 
+import com.example.list.MyListImpl1;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,16 +19,17 @@ public class MyMapImpl1Tests {
     static final String VSEGUNDO = "Hola, soy el 2";
     static final String VTERCERO = "Hola, soy el 3 LCDTM";
 
-    MyMap<Integer, String> myMap;
-
-    @Test
-    void contextLoads() {
+    private MyMap<Integer, String> myMap;
+    @BeforeEach
+    public void setupBefore() {
+        myMap = new MyMapImpl1<>();
     }
 
     @Test
-    void size() {
-        int size = myMap.size();
+    void createEmptyListOk() {
         assertEquals(0, myMap.size());
-        //assertEquals(1, myList.size());
     }
+
+
+
 }
