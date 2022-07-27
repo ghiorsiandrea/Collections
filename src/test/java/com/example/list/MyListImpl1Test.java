@@ -2,6 +2,8 @@ package com.example.list;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,7 +45,7 @@ public class MyListImpl1Test {
 
     @Test
     void addMultipleElementOK() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         //Assert
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
@@ -52,7 +54,7 @@ public class MyListImpl1Test {
 
     @Test
     void addMUltipleElementErrorSize() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         //Assert
         assertNotEquals(3, myList.size());
         assertTrue(myList.contains(PRIMERO));
@@ -61,7 +63,7 @@ public class MyListImpl1Test {
 
     @Test
     void addMUltipleElementErrorContains() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         //Assert
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
@@ -89,9 +91,22 @@ public class MyListImpl1Test {
         System.out.println(myList);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {88, 100, 120})
+    void addMultipleElementOKWithFor(int length) {
+        for (int i = 0; i < length; i++) {
+            myList.add("A" + i);
+        }
+        //Assert
+        assertEquals(length, myList.size());
+        for (int i = 0; i < length; i++) {
+            assertTrue(myList.contains("A" + i));
+        }
+    }
+
     @Test
     void RemoveMultipleElementOK() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
         assertTrue(myList.contains(SEGUNDO));
@@ -102,7 +117,7 @@ public class MyListImpl1Test {
 
     @Test
     void RemoveMultipleElementError() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
         assertTrue(myList.contains(SEGUNDO));
@@ -113,7 +128,7 @@ public class MyListImpl1Test {
 
     @Test
     void RemoveMultipleElementChangingState() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
         assertTrue(myList.contains(SEGUNDO));
@@ -126,7 +141,7 @@ public class MyListImpl1Test {
 
     @Test
     void RemoveAllOk() {
-        prepareContextMultipleFile();
+        prepareContextTwoFile();
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
         assertTrue(myList.contains(SEGUNDO));
@@ -167,11 +182,34 @@ public class MyListImpl1Test {
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+    @Test
+    void getPos() {
+        prepareContextTwoFile();
+
+        assertEquals(myList.get(0), PRIMERO);
+        assertEquals(myList.get(1), SEGUNDO);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {88, 100, 120})
+    void getPosWithFor(int length) {
+        for (int i = 0; i < length; i++) {
+            myList.add("A" + i);
+        }
+        //Assert
+        assertEquals(length, myList.size());
+        for (int i = 0; i < length; i++) {
+            assertEquals(myList.get(i), "A" + i);
+        }
+    }
+
+
     void prepareContextSingleFile() {
         myList.add(PRIMERO);
     }
 
-    void prepareContextMultipleFile() {
+    void prepareContextTwoFile() {
         myList.add(PRIMERO);
         myList.add(SEGUNDO);
     }
