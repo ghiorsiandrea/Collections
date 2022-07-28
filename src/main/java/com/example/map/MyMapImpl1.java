@@ -3,6 +3,7 @@ package com.example.map;
 import com.example.list.MyList;
 import com.example.list.MyListImpl1;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -193,6 +194,11 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     public void clear() {
 
     }
-
+    @Override
+    public String toString() {
+        return "MyMapImpl1{" + "\n" +
+        "elements=" + "\n" + keys + "\n" + values + ",\n" +
+                '}';
+    }
 
 }

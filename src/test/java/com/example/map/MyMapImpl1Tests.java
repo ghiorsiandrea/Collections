@@ -1,13 +1,9 @@
 package com.example.map;
 
-import com.example.list.MyListImpl1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyMapImpl1Tests {
 
@@ -44,43 +40,41 @@ public class MyMapImpl1Tests {
     public void whenExceptionThrown_thenAssertionSucceedsNullElement() {
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myMap.put(null, VPRIMERO));
-
         String expectedMessage = "The key can not be null.";
         String actualMessage = exception.getMessage();
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
-//
-//    @Test
-//    void addMultipleElementOK() {
-//        prepareContextMultipleFile();
-//        //Assert
-//        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
-//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
-//    }
 
-//
-//    @Test
-//    void addMultipleElementOKWithFor() {
-//        for (int i = 0; i < 88; i++) {
-//            myMap.add("A" + i);
-//        }
-//        //Assert
-//        assertEquals(88, myMap.size());
-//        System.out.println(myMap);
-//    }
-//
-//    @Test
-//    void addMultipleElementOKGrowth() {
-//        for (int i = 0; i < 100; i++) {
-//            myMap.add("A" + i);
-//        }
-//        //Assert
-//        assertEquals(100, myMap.size());
-//        System.out.println(myMap);
-//    }
+    @Test
+    void addMultipleElementWithNullValue() {
+        myMap.put(KPRIMERO, VPRIMERO);
+        myMap.put(KSEGUNDO, null);
+        assertEquals(2, myMap.size());
+        assertEquals(VPRIMERO, myMap.get(KPRIMERO));
+        assertNull(myMap.get(KSEGUNDO));
+    }
+
+
+    @Test
+    void addMultipleElementOKWithFor() {
+        for (int i = 0; i < 88; i++) {
+            myMap.put(i+1, "A" + i);
+        }
+        //Assert
+        assertEquals(88, myMap.size());
+        System.out.println(myMap);
+    }
+
+    @Test
+    void addMultipleElementOKGrowth() {
+        for (int i = 0; i < 100; i++) {
+            myMap.put(i+1, "A" + i);
+        }
+        //Assert
+        assertEquals(100, myMap.size());
+        System.out.println(myMap);
+    }
 //
 //    @Test
 //    void RemoveMultipleElementOK() {
