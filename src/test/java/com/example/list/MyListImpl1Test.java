@@ -8,8 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MyListImpl1Test {
-    static final String PRIMERO = "Hola, soy el primero";
-    static final String SEGUNDO = "Hola, soy el 2";
+    static final String PRIMERO = "Hola, soy el primer elemento";
+    static final String SEGUNDO = "Hola, soy el segundo elemento";
     MyList<String> myList;
 
     @BeforeEach
@@ -160,9 +160,8 @@ public class MyListImpl1Test {
     @Test
     public void whenExceptionThrown_thenAssertionSucceedsINexistentElement() {
         int prueba = 50;
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            myList.remove(prueba);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, ()
+                -> myList.remove(prueba));
 
         String expectedMessage = String.format("There is no element into %s", prueba);
         String actualMessage = exception.getMessage();
@@ -173,9 +172,8 @@ public class MyListImpl1Test {
     @Test
     public void whenExceptionThrown_thenAssertionSucceedsNegativeElement() {
         int prueba = -100;
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            myList.remove(prueba);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, ()
+                -> myList.remove(prueba));
 
         String expectedMessage = "The position can not be negative";
         String actualMessage = exception.getMessage();

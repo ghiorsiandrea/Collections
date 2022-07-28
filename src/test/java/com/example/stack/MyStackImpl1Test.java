@@ -11,10 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MyStackImpl1Test {
 
-    static final String PRIMERO = "Hola, soy el primero";
-    static final String SEGUNDO = "Hola, soy el 2";
-
-    static final String TERCERO = "Hola, soy el 3 LCDTM";
+    static final String PRIMERO = "Hola, soy el primer elemento";
+    static final String SEGUNDO = "Hola, soy el segundo elemento";
+    static final String TERCERO = "Hola, soy el tercer elemento";
     MyStack<String> myStack;
 
     @BeforeEach
