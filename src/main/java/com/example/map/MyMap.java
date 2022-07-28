@@ -57,7 +57,7 @@ public interface MyMap<K , V > {
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
      */
-    V get(Object key);
+    V get(K key);
 
 
     // Modification Operations

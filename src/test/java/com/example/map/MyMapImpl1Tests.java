@@ -16,9 +16,9 @@ public class MyMapImpl1Tests {
     static final Integer KSEGUNDO = 2;
     static final Integer KTERCERO = 3;
 
-    static final String VPRIMERO = "Hola, soy el primero";
-    static final String VSEGUNDO = "Hola, soy el 2";
-    static final String VTERCERO = "Hola, soy el 3 LCDTM";
+    static final String VPRIMERO = "Hola, soy el primer elemento";
+    static final String VSEGUNDO = "Hola, soy el segundo elemento";
+    static final String VTERCERO = "Hola, soy el tercer elemento";
 
     private MyMap<Integer, String> myMap;
 
@@ -33,54 +33,34 @@ public class MyMapImpl1Tests {
         assertTrue(myMap.isEmpty());
     }
 
-//    @Test
-//    void addElementOK() {
-//        prepareContextSingleFile();
-//        assertEquals(1, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//    }
-//
-//    @Test
-//    void addElementErrorSize() {
-//        prepareContextSingleFile();
-//        assertNotEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//    }
-//
-//    @Test
-//    void addElementErrorContains() {
-//        prepareContextSingleFile();
-//        assertEquals(1, myMap.size());
-//        assertFalse(myMap.contains("A"));
-//    }
+    @Test
+    void getElementOK() {
+        myMap.put(KPRIMERO, VPRIMERO);
+        assertEquals(1, myMap.size());
+        assertEquals(VPRIMERO, myMap.get(KPRIMERO));
+    }
+
+    @Test
+    public void whenExceptionThrown_thenAssertionSucceedsNullElement() {
+        Exception exception = assertThrows(IllegalArgumentException.class, ()
+                -> myMap.put(null, VPRIMERO));
+
+        String expectedMessage = "The key can not be null.";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 //
 //    @Test
 //    void addMultipleElementOK() {
 //        prepareContextMultipleFile();
 //        //Assert
 //        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
+//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
+//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
 //    }
-//
-//    @Test
-//    void addMUltipleElementErrorSize() {
-//        prepareContextMultipleFile();
-//        //Assert
-//        assertNotEquals(3, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
-//    }
-//
-//    @Test
-//    void addMUltipleElementErrorContains() {
-//        prepareContextMultipleFile();
-//        //Assert
-//        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
-//        assertFalse(myMap.contains("aaaa"));
-//    }
+
 //
 //    @Test
 //    void addMultipleElementOKWithFor() {
@@ -106,88 +86,55 @@ public class MyMapImpl1Tests {
 //    void RemoveMultipleElementOK() {
 //        prepareContextMultipleFile();
 //        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
+//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
+//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
 //        myMap.remove(0);
 //        assertEquals(1, myMap.size());
-//        assertFalse(myMap.contains(PRIMERO));
+//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
 //    }
 //
 //    @Test
 //    void RemoveMultipleElementError() {
 //        prepareContextMultipleFile();
 //        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
+//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
+//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
 //        myMap.remove(0);
 //        assertNotEquals(2, myMap.size());
-//        assertFalse(myMap.contains(PRIMERO));
+//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
 //    }
 //
 //    @Test
 //    void RemoveMultipleElementChangingState() {
 //        prepareContextMultipleFile();
 //        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
+//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
+//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
 //        myMap.remove(0);
 //        assertEquals(1, myMap.size());
-//        assertFalse(myMap.contains(PRIMERO));
+//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
 //        prepareContextSingleFile();
-//        assertTrue(myMap.contains(PRIMERO));
+//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
 //    }
 //
 //    @Test
 //    void RemoveAllOk() {
 //        prepareContextMultipleFile();
 //        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(PRIMERO));
-//        assertTrue(myMap.contains(SEGUNDO));
+//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
+//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
 //        myMap.removeAll();
 //        assertEquals(0, myMap.size());
-//        assertFalse(myMap.contains(PRIMERO));
+//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
 //    }
 //
 //    @Test
 //    void RemoveAllEmpty() {
 //        myMap.removeAll();
 //        assertEquals(0, myMap.size());
-//        assertFalse(myMap.contains(PRIMERO));
+//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
 //    }
 //
-//    @Test
-//    public void whenExceptionThrown_thenAssertionSucceedsINexistentElement() {
-//        int prueba = 50;
-//        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-//            myMap.remove(prueba);
-//        });
-//
-//        String expectedMessage = String.format("There is no element into %s", prueba);
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
-//
-//    @Test
-//    public void whenExceptionThrown_thenAssertionSucceedsNegativeElement() {
-//        int prueba = -100;
-//        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-//            myMap.remove(prueba);
-//        });
-//
-//        String expectedMessage = "The position can not be negative";
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
-//
-//    void prepareContextSingleFile() {
-//        myMap.add(PRIMERO);
-//    }
-//
-//    void prepareContextMultipleFile() {
-//        myMap.add(PRIMERO);
-//        myMap.add(SEGUNDO);
-//    }
+
 
 }
