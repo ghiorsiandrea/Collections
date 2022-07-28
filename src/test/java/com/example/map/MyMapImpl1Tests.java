@@ -51,36 +51,36 @@ public class MyMapImpl1Tests {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
-//
-//    @Test
-//    void addMultipleElementOK() {
-//        prepareContextMultipleFile();
-//        //Assert
-//        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
-//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
-//    }
 
-//
-//    @Test
-//    void addMultipleElementOKWithFor() {
-//        for (int i = 0; i < 88; i++) {
-//            myMap.add("A" + i);
-//        }
-//        //Assert
-//        assertEquals(88, myMap.size());
-//        System.out.println(myMap);
-//    }
-//
-//    @Test
-//    void addMultipleElementOKGrowth() {
-//        for (int i = 0; i < 100; i++) {
-//            myMap.add("A" + i);
-//        }
-//        //Assert
-//        assertEquals(100, myMap.size());
-//        System.out.println(myMap);
-//    }
+    @Test
+    void addMultipleElementWithNullValue() {
+        myMap.put(KPRIMERO, VPRIMERO);
+        myMap.put(KSEGUNDO, null);
+        assertEquals(2, myMap.size());
+        assertEquals(VPRIMERO, myMap.get(KPRIMERO));
+        assertEquals(null, myMap.get(KSEGUNDO));
+    }
+
+
+    @Test
+    void addMultipleElementOKWithFor() {
+        for (int i = 0; i < 88; i++) {
+            myMap.put(i+1, "A" + i);
+        }
+        //Assert
+        assertEquals(88, myMap.size());
+        System.out.println(myMap);
+    }
+
+    @Test
+    void addMultipleElementOKGrowth() {
+        for (int i = 0; i < 100; i++) {
+            myMap.put(i+1, "A" + i);
+        }
+        //Assert
+        assertEquals(100, myMap.size());
+        System.out.println(myMap);
+    }
 //
 //    @Test
 //    void RemoveMultipleElementOK() {
