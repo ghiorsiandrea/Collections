@@ -75,7 +75,7 @@ public class MyMapImpl1Tests {
     @Test
     void putMultipleElementOKGrowth() {
         for (int i = 0; i < 100; i++) {
-            myMap.put(i + 1, "A" + i);
+            myMap.put(i + 1, "00" + i);
         }
         //Assert
         assertEquals(100, myMap.size());

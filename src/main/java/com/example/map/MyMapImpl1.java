@@ -127,11 +127,32 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
 //                "elements=" + "\n" + keys + "\n" + values + ",\n" +
 //                '}';
 
+        StringBuilder result = new StringBuilder("MyMapImpl1 {\n");
         for (int i = 0; i < size(); i++) {
-            String map = keys + values.toString();
-            return map;
+            result.append(getKeyAndValueLine(keys.get(i).toString(), values.get(i).toString()));
         }
-        return null;
+        result.append("}\n");
+        return result.toString();
+    }
+
+    private String getKeyAndValueLine(String key, String value) {
+        int length = getSizeOfLongerString();
+        String formattedKey = key + " ".repeat(Math.max(0, length - (key.length() - 1)));
+
+        return "  " + formattedKey + "  " + value + " ".repeat(Math.max(0, length - (value.length() - 1))) + "\n";
+    }
+
+    private int getSizeOfLongerString() {
+        int max = 0;
+        for (int i = 0; i < size(); i++) {
+            int keyLength = keys.get(i).toString().length();
+            int valueLength = values.get(i).toString().length();
+
+            if (keyLength > max) max = keyLength;
+            if (valueLength > max) max = valueLength;
+        }
+
+        return max;
     }
 
 }
