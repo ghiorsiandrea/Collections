@@ -1,9 +1,5 @@
 package com.example.map;
 
-import com.example.list.MyListImpl1;
-
-import java.util.Map;
-
 public interface MyMap<K , V > {
 
     // Query Operations
@@ -106,7 +102,7 @@ public interface MyMap<K , V > {
      *         map does not permit null keys
      * (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      */
-    V remove(Object key);
+    V remove(K key);
 
     // Bulk Operations
 
@@ -132,7 +128,7 @@ public interface MyMap<K , V > {
     void putAll(MyMap<? extends K, ? extends V> m);
 
     /**
-     * Removes all of the mappings from this map (optional operation).
+     * Removes all the mappings from this map (optional operation).
      * The map will be empty after this call returns.
      *
      * @throws UnsupportedOperationException if the {@code clear} operation

@@ -37,7 +37,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    public void whenExceptionThrown_thenAssertionSucceedsNullElement() {
+    public void putNullKeyWhenExceptionThrown_thenAssertionSucceeds() {
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myMap.put(null, VPRIMERO));
         String expectedMessage = "The key can not be null.";
@@ -74,6 +74,31 @@ public class MyMapImpl1Tests {
         //Assert
         assertEquals(100, myMap.size());
         System.out.println(myMap);
+    }
+
+    @Test
+    void remove() {
+        myMap.put(KPRIMERO, VPRIMERO);
+        myMap.remove(KPRIMERO);
+        assertTrue(myMap.isEmpty());
+    }
+
+    @Test
+    public void removeNullKeywhenExceptionThrown_thenAssertionSucceeds() {
+        Exception exception = assertThrows(IllegalArgumentException.class, ()
+                -> myMap.remove(null));
+        String expectedMessage = "The key can not be null.";
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, expectedMessage);
+    }
+
+    @Test
+    public void removeInexistentKeywhenExceptionThrown_thenAssertionSucceeds() {
+        Exception exception = assertThrows(IllegalArgumentException.class, ()
+                -> myMap.remove(50));
+        String expectedMessage = "The key is not present in this Map";
+        String actualMessage = exception.getMessage();
+        assertEquals(actualMessage, expectedMessage);
     }
 
 

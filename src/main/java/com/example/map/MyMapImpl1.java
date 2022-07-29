@@ -139,19 +139,31 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
      * @param key key whose mapping is to be removed from the map
      * @return the previous value associated with {@code key}, or
      * {@code null} if there was no mapping for {@code key}.
-     * @throws UnsupportedOperationException if the {@code remove} operation
-     *                                       is not supported by this map
-     * @throws ClassCastException            if the key is of an inappropriate type for
-     *                                       this map
-     *                                       (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException          if the specified key is null and this
-     *                                       map does not permit null keys
-     *                                       (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
+     * (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
+     * @throws IllegalArgumentException if the specified key is null and this
+     *                                  map does not permit null keys
      */
     @Override
-    public V remove(Object key) {
-        return null;
+    public V remove(K key) {
+        if (key == null) {
+            throw new IllegalArgumentException("The key can not be null.");
+        }
+        if (!containsKey(key)) {
+            throw new IllegalArgumentException("The key is not present in this Map");
+        }
+        V vRemoved = get(key);
+        int iRemoved;
+        for (int i = 0; i < keys.size(); i++) {
+            K keyI = keys.get(i);
+            if (key.equals(keyI)) {
+                iRemoved = i;
+                keys.remove(iRemoved);
+                values.remove(iRemoved);
+            }
+        }
+        return vRemoved;
     }
+
 
     // Bulk Operations
 
@@ -190,11 +202,22 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     public void clear() {
 
     }
+
     @Override
     public String toString() {
         return "MyMapImpl1{" + "\n" +
-        "elements=" + "\n" + keys + "\n" + values + ",\n" +
+                "elements=" + "\n" + keys + "\n" + values + ",\n" +
                 '}';
     }
+
+
+//    public String toStringa() {
+//        return "MyMapImpl1{" + "\n" +
+//                "elements=" + "\n" + keys + "\n" + values + ",\n" +
+//                '}';
+//        for (int i = 0; i < size(); i++) {
+//            i = i + 1;
+//        }
+//    }
 
 }
