@@ -101,11 +101,11 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
      * specified map is modified while the operation is in progress.
      *
      * @param m mappings to be stored in this map
-     * @throws NullPointerException          if the specified map is null, or if
-     *                                       this map does not permit null keys or values, and the
-     *                                       specified map contains null keys or values
-     * @throws IllegalArgumentException      if some property of a key or value in
-     *                                       the specified map prevents it from being stored in this map
+     * @throws NullPointerException     if the specified map is null, or if
+     *                                  this map does not permit null keys or values, and the
+     *                                  specified map contains null keys or values
+     * @throws IllegalArgumentException if some property of a key or value in
+     *                                  the specified map prevents it from being stored in this map
      */
     @Override
     public void putAll(MyMap<? extends K, ? extends V> m) {
