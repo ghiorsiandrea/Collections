@@ -3,10 +3,7 @@ package com.example.map;
 import com.example.list.MyList;
 import com.example.list.MyListImpl1;
 
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 public class MyMapImpl1<K, V> implements MyMap<K, V> {
 
@@ -31,8 +28,7 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
      */
     @Override
     public int size() {
-        int size = keys.size();
-        return Math.min(size, Integer.MAX_VALUE);
+        return keys.size();
     }
 
     /**
@@ -160,7 +156,7 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     // Bulk Operations
 
     /**
-     * Copies all of the mappings from the specified map to this map
+     * Copies all the mappings from the specified map to this map
      * (optional operation).  The effect of this call is equivalent to that
      * of calling {@link #put(Object, Object) put(k, v)} on this map once
      * for each mapping from key {@code k} to value {@code v} in the
@@ -184,7 +180,7 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     }
 
     /**
-     * Removes all of the mappings from this map (optional operation).
+     * Removes all the mappings from this map (optional operation).
      * The map will be empty after this call returns.
      *
      * @throws UnsupportedOperationException if the {@code clear} operation
