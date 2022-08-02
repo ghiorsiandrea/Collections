@@ -108,36 +108,23 @@ public class MyMapImpl1Tests {
     }
 
 
-//    @Test
-//    void RemoveMultipleElementOK() {
-//        prepareContextMultipleFile();
-//        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
-//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
-//        myMap.remove(0);
-//        assertEquals(1, myMap.size());
-//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
-//    }
+    @Test
+    void ClearOk() {
+        myMap.put(KPRIMERO, VPRIMERO);
+        myMap.put(KSEGUNDO, VSEGUNDO);
+        myMap.clear();
+        assertEquals(0, myMap.size());
+        assertFalse(myMap.containsKey(KPRIMERO));
 
-//
-//    @Test
-//    void RemoveAllOk() {
-//        prepareContextMultipleFile();
-//        assertEquals(2, myMap.size());
-//        assertTrue(myMap.contains(KPRIMERO, VPRIMERO));
-//        assertTrue(myMap.contains(KSEGUNDO, VSEGUNDO));
-//        myMap.removeAll();
-//        assertEquals(0, myMap.size());
-//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
-//    }
-//
-//    @Test
-//    void RemoveAllEmpty() {
-//        myMap.removeAll();
-//        assertEquals(0, myMap.size());
-//        assertFalse(myMap.contains(KPRIMERO, VPRIMERO));
-//    }
-//
+    }
+
+    @Test
+    void ClearEmpty() {
+        myMap.clear();
+        assertEquals(0, myMap.size());
+        assertFalse(myMap.containsKey(KPRIMERO));
+    }
+
 
 
 }

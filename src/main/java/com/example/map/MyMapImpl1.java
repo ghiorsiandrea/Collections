@@ -118,14 +118,13 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
      */
     @Override
     public void clear() {
+        keys.removeAll();
+        values.removeAll();
 
     }
 
     @Override
     public String toString() {
-//        return "MyMapImpl1{" + "\n" +
-//                "elements=" + "\n" + keys + "\n" + values + ",\n" +
-//                '}';
 
         StringBuilder result = new StringBuilder("MyMapImpl1 {\n");
         for (int i = 0; i < size(); i++) {
