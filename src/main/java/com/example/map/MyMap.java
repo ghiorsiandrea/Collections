@@ -1,5 +1,8 @@
 package com.example.map;
 
+import com.example.list.MyList;
+import com.example.util.Pair;
+
 public interface MyMap<K, V> {
 
     // Query Operations
@@ -83,6 +86,12 @@ public interface MyMap<K, V> {
     V remove(K key);
 
     // Bulk Operations
+
+    /**
+     * Get a list containing each key and the associated value of this Map inside a Pair.
+     * @return A MyList of Pairs
+     */
+    MyList<Pair<K, V>> getListOfKeysAndValues();
 
     /**
      * Copies all the mappings from the specified map to this map

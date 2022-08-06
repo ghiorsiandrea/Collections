@@ -2,12 +2,13 @@ package com.example.map;
 
 import com.example.list.MyList;
 import com.example.list.MyListImpl1;
+import com.example.util.Pair;
 
 import java.util.Objects;
 
 public class MyMapImpl1<K, V> implements MyMap<K, V> {
 
-
+    //Not thread safe
     private final MyList<K> keys;
 
     private final MyList<V> values;
@@ -91,14 +92,29 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
 
 
     // Bulk Operations
+    @Override
+    public MyList<Pair<K, V>> getListOfKeysAndValues() {
+        MyList<Pair<K, V>> result = new MyListImpl1<>();
+
+        for (int i = 0; i < keys.size(); i++) {
+            K key = keys.get(i);
+            V value = values.get(i);
+            Pair<K, V> newPair = new Pair<>(key, value);
+            result.add(newPair);
+        }
+
+        return result;
+    }
+
 
     /**
      * Copies all the mappings from the specified map to this map
      * (optional operation).  The effect of this call is equivalent to that
      * of calling {@link #put(Object, Object) put(k, v)} on this map once
      * for each mapping from key {@code k} to value {@code v} in the
-     * specified map.  The behavior of this operation is undefined if the
-     * specified map is modified while the operation is in progress.
+     * specified map.
+     * The behavior of this operation is undefined if the specified map is
+     * modified while the operation is in progress == (Not thread safe).
      *
      * @param m mappings to be stored in this map
      * @throws NullPointerException     if the specified map is null, or if
@@ -109,7 +125,14 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
      */
     @Override
     public void putAll(MyMap<? extends K, ? extends V> m) {
+        MyList<? extends Pair<? extends K, ? extends V>> myListOfPair = m.getListOfKeysAndValues();
 
+        for (int i = 0; i < myListOfPair.size() ; i++) {
+            Pair<? extends K, ? extends V> pair =  myListOfPair.get(i);
+            K key = pair.getLeft();
+            V value = pair.getRight();
+            put(key, value);
+        }
     }
 
     /**
