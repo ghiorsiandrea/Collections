@@ -1,7 +1,7 @@
 package com.example.map;
 
 import com.example.list.MyList;
-import com.example.util.Pair;
+import com.example.util.MyPair;
 
 public interface MyMap<K, V> {
 
@@ -91,7 +91,7 @@ public interface MyMap<K, V> {
      * Get a list containing each key and the associated value of this Map inside a Pair.
      * @return A MyList of Pairs
      */
-    MyList<Pair<K, V>> getListOfKeysAndValues();
+    MyList<MyPair<K, V>> getListOfKeysAndValues();
 
     /**
      * Copies all the mappings from the specified map to this map

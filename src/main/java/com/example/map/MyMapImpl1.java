@@ -2,7 +2,7 @@ package com.example.map;
 
 import com.example.list.MyList;
 import com.example.list.MyListImpl1;
-import com.example.util.Pair;
+import com.example.util.MyPair;
 
 import java.util.Objects;
 
@@ -93,14 +93,14 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
 
     // Bulk Operations
     @Override
-    public MyList<Pair<K, V>> getListOfKeysAndValues() {
-        MyList<Pair<K, V>> result = new MyListImpl1<>();
+    public MyList<MyPair<K, V>> getListOfKeysAndValues() {
+        MyList<MyPair<K, V>> result = new MyListImpl1<>();
 
         for (int i = 0; i < keys.size(); i++) {
             K key = keys.get(i);
             V value = values.get(i);
-            Pair<K, V> newPair = new Pair<>(key, value);
-            result.add(newPair);
+            MyPair<K, V> newMyPair = new MyPair<>(key, value);
+            result.add(newMyPair);
         }
 
         return result;
@@ -125,12 +125,12 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
      */
     @Override
     public void putAll(MyMap<? extends K, ? extends V> m) {
-        MyList<? extends Pair<? extends K, ? extends V>> myListOfPair = m.getListOfKeysAndValues();
+        MyList<? extends MyPair<? extends K, ? extends V>> myListOfPair = m.getListOfKeysAndValues();
 
         for (int i = 0; i < myListOfPair.size() ; i++) {
-            Pair<? extends K, ? extends V> pair =  myListOfPair.get(i);
-            K key = pair.getLeft();
-            V value = pair.getRight();
+            MyPair<? extends K, ? extends V> myPair =  myListOfPair.get(i);
+            K key = myPair.getLeft();
+            V value = myPair.getRight();
             put(key, value);
         }
     }
