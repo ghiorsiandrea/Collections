@@ -53,14 +53,15 @@ public class MyListImpl1<T> implements MyList<T> {
     @Override
     public boolean contains(T element) {
         for (int i = 0; i < position; i++) {
-            Object [] elem = elements;
+            Object[] elem = elements;
             if (Objects.equals(elem[i], element)) {
                 return true;
             }
         }
         return false;
 
-        }
+    }
+
     private void growthElementArray() {
         Object[] newBiggerArray = new Object[elements.length * 2];
         for (int i = 0; i < position; i++) {
@@ -84,5 +85,26 @@ public class MyListImpl1<T> implements MyList<T> {
                 "elements=" + "\n" + Arrays.toString(elements) + ",\n" +
                 "position = " + position +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof MyList<?>)) {
+            return false;
+        }
+
+        MyList<?> myList = (MyList<?>) o;
+        for (int i = 0; i < size(); i++) {
+            Object t = myList.get(i);
+            Object t2 = this.get(i);
+            if (!Objects.equals(t, t2)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -90,7 +90,6 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
         return vRemoved;
     }
 
-
     // Bulk Operations
     @Override
     public MyList<MyPair<K, V>> getListOfKeysAndValues() {
@@ -105,7 +104,6 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
 
         return result;
     }
-
 
     /**
      * Copies all the mappings from the specified map to this map
@@ -127,8 +125,8 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
     public void putAll(MyMap<? extends K, ? extends V> m) {
         MyList<? extends MyPair<? extends K, ? extends V>> myListOfPair = m.getListOfKeysAndValues();
 
-        for (int i = 0; i < myListOfPair.size() ; i++) {
-            MyPair<? extends K, ? extends V> myPair =  myListOfPair.get(i);
+        for (int i = 0; i < myListOfPair.size(); i++) {
+            MyPair<? extends K, ? extends V> myPair = myListOfPair.get(i);
             K key = myPair.getLeft();
             V value = myPair.getRight();
             put(key, value);
@@ -144,6 +142,29 @@ public class MyMapImpl1<K, V> implements MyMap<K, V> {
         keys.removeAll();
         values.removeAll();
 
+    }
+
+    /**
+     * Compares the specified object with this entry for equality.
+     * Returns {@code true} if the given object is also a map entry and
+     * the two entries represent the same mapping.  More formally, two
+     * entries {@code e1} and {@code e2} represent the same mapping
+     * if<pre>
+     *     (e1.getKey()==null ?
+     *      e2.getKey()==null : e1.getKey().equals(e2.getKey()))  &amp;&amp;
+     *     (e1.getValue()==null ?
+     *      e2.getValue()==null : e1.getValue().equals(e2.getValue()))
+     * </pre>
+     * This ensures that the {@code equals} method works properly across
+     * different implementations of the {@code Map.Entry} interface.
+     *
+     * @param o object to be compared for equality with this map entry
+     * @return {@code true} if the specified object is equal to this map
+     * entry
+     */
+    @Override
+    public boolean equals(Object o) {
+        return (this == o);
     }
 
     @Override

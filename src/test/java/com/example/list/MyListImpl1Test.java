@@ -1,5 +1,6 @@
 package com.example.list;
 
+import com.example.map.MyMapImpl1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MyListImpl1Test {
     static final String PRIMERO = "Hola, soy el primer elemento";
     static final String SEGUNDO = "Hola, soy el segundo elemento";
+
     MyList<String> myList;
 
     @BeforeEach
@@ -210,5 +212,34 @@ public class MyListImpl1Test {
     void prepareContextTwoFile() {
         myList.add(PRIMERO);
         myList.add(SEGUNDO);
+    }
+
+    @Test
+    void equalsCaseSameObjectEmptyList() {
+        assertEquals(myList, myList);
+    }
+    @Test
+    void equalsCaseSameObjectNewList() {
+        prepareContextTwoFile();
+        MyList<String> myList2 = myList;
+        assertEquals(myList, myList2);
+    }
+
+    @Test
+    void equalsOk() {
+        prepareContextTwoFile();
+        MyList<String> myList2 = new MyListImpl1<>();
+        myList2.add(PRIMERO);
+        myList2.add(SEGUNDO);
+        assertEquals(myList, myList2);
+    }
+
+    @Test
+    void WhenHasDifferentClassesThenIsNotEquals() {
+        prepareContextTwoFile();
+        MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
+        myMap.put(PRIMERO, PRIMERO);
+        myMap.put(SEGUNDO, SEGUNDO);
+        assertNotEquals(myList, myMap);
     }
 }
