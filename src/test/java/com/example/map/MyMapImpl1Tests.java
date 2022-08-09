@@ -1,5 +1,8 @@
 package com.example.map;
 
+import com.example.list.MyList;
+import com.example.list.MyListImpl1;
+import com.example.util.MyPair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -129,7 +132,13 @@ public class MyMapImpl1Tests {
     void getPairOfKeysAndValues() {
         myMap.put(KPRIMERO, VPRIMERO);
         myMap.put(KSEGUNDO, VSEGUNDO);
-        assertEquals(myMap.getListOfKeysAndValues().get(0),KPRIMERO );
+        MyList<MyPair<Integer, String>> expected = new MyListImpl1<>();
+        expected.add(new MyPair<>(KPRIMERO, VPRIMERO));
+        expected.add(new MyPair<>(KSEGUNDO, VSEGUNDO));
+
+        MyList<MyPair<Integer, String>> actual = myMap.getListOfKeysAndValues();
+
+        assertEquals(expected, actual);
 
     }
 
