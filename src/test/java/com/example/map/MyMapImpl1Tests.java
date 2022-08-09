@@ -125,10 +125,12 @@ public class MyMapImpl1Tests {
         assertFalse(myMap.containsKey(KPRIMERO));
     }
 
+    @Test
     void getPairOfKeysAndValues() {
         myMap.put(KPRIMERO, VPRIMERO);
         myMap.put(KSEGUNDO, VSEGUNDO);
-        //assertEquals(myMap.getListOfKeysAndValues(), );
+        assertEquals(myMap.getListOfKeysAndValues().get(0),KPRIMERO );
+
     }
 
 

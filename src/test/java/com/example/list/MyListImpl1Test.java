@@ -204,20 +204,11 @@ public class MyListImpl1Test {
         }
     }
 
-
-    void prepareContextSingleFile() {
-        myList.add(PRIMERO);
-    }
-
-    void prepareContextTwoFile() {
-        myList.add(PRIMERO);
-        myList.add(SEGUNDO);
-    }
-
     @Test
     void equalsCaseSameObjectEmptyList() {
         assertEquals(myList, myList);
     }
+
     @Test
     void equalsCaseSameObjectNewList() {
         prepareContextTwoFile();
@@ -226,12 +217,30 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void equalsOk() {
+    void Given_TheSameList_Then_EqualsShouldReturnTrue() {
         prepareContextTwoFile();
         MyList<String> myList2 = new MyListImpl1<>();
         myList2.add(PRIMERO);
         myList2.add(SEGUNDO);
         assertEquals(myList, myList2);
+    }
+
+    @Test
+    void Given_ListsWithDifferentLength_Then_EqualsShouldReturnFalse() {
+        prepareContextTwoFile();
+        MyList<String> myList2 = new MyListImpl1<>();
+        myList2.add(PRIMERO);
+        myList2.add(SEGUNDO);
+        myList2.add("A");
+        assertNotEquals(myList, myList2);
+    }
+    @Test
+    void Given_DifferentLists_Then_EqualsShouldReturnFalse() {
+        prepareContextTwoFile();
+        MyList<String> myList2 = new MyListImpl1<>();
+        myList2.add(PRIMERO);
+        myList2.add("A");
+        assertNotEquals(myList, myList2);
     }
 
     @Test
@@ -241,5 +250,23 @@ public class MyListImpl1Test {
         myMap.put(PRIMERO, PRIMERO);
         myMap.put(SEGUNDO, SEGUNDO);
         assertNotEquals(myList, myMap);
+    }
+
+    @Test
+    void given_DifferentClasses_Then_EqualsShouldReturnFalse() {
+        prepareContextTwoFile();
+        MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
+        myMap.put(PRIMERO, PRIMERO);
+        myMap.put(SEGUNDO, SEGUNDO);
+        assertNotEquals(myList, myMap);
+    }
+
+    void prepareContextSingleFile() {
+        myList.add(PRIMERO);
+    }
+
+    void prepareContextTwoFile() {
+        myList.add(PRIMERO);
+        myList.add(SEGUNDO);
     }
 }

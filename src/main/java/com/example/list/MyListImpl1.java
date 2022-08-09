@@ -98,6 +98,9 @@ public class MyListImpl1<T> implements MyList<T> {
         }
 
         MyList<?> myList = (MyList<?>) o;
+        if (myList.size()!= this.size()) {
+            return false;
+        }
         for (int i = 0; i < size(); i++) {
             Object t = myList.get(i);
             Object t2 = this.get(i);
