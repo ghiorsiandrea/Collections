@@ -39,7 +39,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    public void putNullKeyWhenExceptionThrown_thenAssertionSucceeds() {
+    public void putNullKey_WhenExceptionThrown_thenAssertionSucceeds() {
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myMap.put(null, VPRIMERO));
         String expectedMessage = "The key can not be null.";
@@ -49,7 +49,7 @@ public class MyMapImpl1Tests {
 
 
     @Test
-    void putMultipleElementWithNullValue() {
+    void given_AnEntryWithNullValue_putMultipleElementOk() {
         myMap.put(KPRIMERO, VPRIMERO);
         myMap.put(KSEGUNDO, null);
         assertEquals(2, myMap.size());
@@ -67,7 +67,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    void putMultipleElementOKWithFor() {
+    void putMultipleElementWithFor_Ok() {
         for (int i = 0; i < 88; i++) {
             myMap.put(i + 1, "A" + i);
         }
@@ -76,7 +76,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    void putMultipleElementOKGrowth() {
+    void putMultipleElementWithGrowth_Ok() {
         for (int i = 0; i < 100; i++) {
             myMap.put(i + 1, "00" + i);
         }
@@ -86,7 +86,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    void remove() {
+    void remove_Ok() {
         myMap.put(KPRIMERO, VPRIMERO);
         myMap.remove(KPRIMERO);
         assertTrue(myMap.isEmpty());
@@ -112,7 +112,7 @@ public class MyMapImpl1Tests {
 
 
     @Test
-    void ClearOk() {
+    void clearOk() {
         myMap.put(KPRIMERO, VPRIMERO);
         myMap.put(KSEGUNDO, VSEGUNDO);
         myMap.clear();
@@ -122,14 +122,14 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    void ClearEmpty() {
+    void given_AnEmptyMap_ClearOk() {
         myMap.clear();
         assertEquals(0, myMap.size());
         assertFalse(myMap.containsKey(KPRIMERO));
     }
 
     @Test
-    void getPairOfKeysAndValues() {
+    void given_AMap_getPairOfKeysAndValues_Ok() {
         myMap.put(KPRIMERO, VPRIMERO);
         myMap.put(KSEGUNDO, VSEGUNDO);
         MyList<MyPair<Integer, String>> expected = new MyListImpl1<>();
