@@ -19,7 +19,7 @@ public class MyPairTests {
     }
 
     @Test
-    void createPairOk() {
+    void createAPair_Ok() {
         assertEquals(L, myPair.getLeft());
         assertEquals(R, myPair.getRight());
     }
