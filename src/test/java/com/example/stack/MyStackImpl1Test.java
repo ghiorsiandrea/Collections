@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MyStackImpl1Test {
@@ -28,14 +26,14 @@ public class MyStackImpl1Test {
 
     @Test
     void addElementOK() {
-        prepareContextSingleFile();
+        prepareContextTestsWithASingleFile();
         assertEquals(1, myStack.size());
         assertTrue(myStack.contains(PRIMERO));
     }
 
     @Test
     void addMultipleElementOK() {
-        prepareContextTwoFile();
+        prepareContextTestsWithTwoFile();
         //Assert
         assertEquals(2, myStack.size());
         assertTrue(myStack.contains(PRIMERO));
@@ -56,15 +54,15 @@ public class MyStackImpl1Test {
     }
 
     @Test
-    void topOk() {
-        prepareContextTwoFile();
+    void top_Ok() {
+        prepareContextTestsWithTwoFile();
 
         assertEquals(SEGUNDO, myStack.top());
     }
 
     @Test
-    void popOK() {
-        prepareContextTwoFile();
+    void pop_OK() {
+        prepareContextTestsWithTwoFile();
 
         String actual = myStack.pop();
 
@@ -74,8 +72,8 @@ public class MyStackImpl1Test {
     }
 
     @Test
-    void popChangingStateTwoFiles() {
-        prepareContextTwoFile();
+    void given_ChangingStateTwoFiles_ReturnsPopOk() {
+        prepareContextTestsWithTwoFile();
 
         String actual = myStack.pop();
 
@@ -89,8 +87,8 @@ public class MyStackImpl1Test {
     }
 
     @Test
-    void popChangingStateTreeFiles() {
-        prepareContextTreeFile();
+    void given_ChangingStateTreeFiles_ReturnsPopOK() {
+        prepareContextTestsWithTreeFile();
         assertEquals(3, myStack.size());
         assertTrue(myStack.contains(PRIMERO));
         assertTrue(myStack.contains(SEGUNDO));
@@ -103,8 +101,8 @@ public class MyStackImpl1Test {
     }
 
     @Test
-    void RemoveAllOk() {
-        prepareContextTwoFile();
+    void given_AStack_RemoveAllOk() {
+        prepareContextTestsWithTwoFile();
 
         myStack.removeAll();
 
@@ -113,23 +111,23 @@ public class MyStackImpl1Test {
     }
 
     @Test
-    void RemoveAllEmpty() {
+    void given_anEmptyStack_RemoveAllOk() {
         myStack.removeAll();
 
         assertEquals(0, myStack.size());
         assertFalse(myStack.contains(PRIMERO));
     }
 
-    void prepareContextSingleFile() {
+    void prepareContextTestsWithASingleFile() {
         myStack.add(PRIMERO);
     }
 
-    void prepareContextTwoFile() {
+    void prepareContextTestsWithTwoFile() {
         myStack.add(PRIMERO);
         myStack.add(SEGUNDO);
     }
 
-    void prepareContextTreeFile() {
+    void prepareContextTestsWithTreeFile() {
         myStack.add(PRIMERO);
         myStack.add(SEGUNDO);
         myStack.add(TERCERO);
