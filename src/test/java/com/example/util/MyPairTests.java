@@ -19,33 +19,33 @@ public class MyPairTests {
     }
 
     @Test
-    void createAPair_Ok() {
+    void givenADefaultPair_WhenCreateAPair_ThenAssertionsSucceeds() {
         assertEquals(L, myPair.getLeft());
         assertEquals(R, myPair.getRight());
     }
 
     @Test
-    void given_TheSamePair_ThenEqualsReturnTrue() {
+    void givenTheSamePair_WhenUseEquals_ThenReturnTrue() {
         assertEquals(myPair, myPair);
     }
 
     @Test
-    void given_ANewIdenticPair_ThenEqualsReturnTrue() {
+    void givenANewIdenticPair_WhenUseEquals_ThenReturnTrue() {
         assertEquals(myPair, new MyPair<>(L, R));
     }
 
     @Test
-    void given_ANewDifferentPair_ThenEqualsReturnFalse() {
+    void givenANewDifferentPair_WhenUseEquals_ThenReturnFalse() {
         assertNotEquals(myPair, new MyPair<>(L, "B"));
     }
 
     @Test
-    void given_ADifferentPairWithNull_ThenEqualsReturnFalse() {
+    void givenADifferentPairWithNull_WhenUseEquals_ThenReturnFalse() {
         assertNotEquals(myPair, new MyPair<>(L, null));
     }
 
     @Test
-    void given_DifferentClasses_Then_EqualsShouldReturnFalse() {
+    void givenDifferentClasses_WhenUseEquals_ThenShouldReturnFalse() {
         MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
         myMap.put("AA", "A");
         myMap.put("BB", "B");
