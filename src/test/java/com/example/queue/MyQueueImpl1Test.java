@@ -133,10 +133,4 @@ public class MyQueueImpl1Test {
         myQueue.add(PRIMERO);
         myQueue.add(SEGUNDO);
     }
-
-    void givenAnEmptyQueue_ThenPrepareContextTestsWithTreeFile_Success() {
-        myQueue.add(PRIMERO);
-        myQueue.add(SEGUNDO);
-        myQueue.add(TERCERO);
-    }
 }
