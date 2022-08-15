@@ -20,7 +20,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenDefaultMap_WhenCreateEmptyList_ThenAssertionSucceeds() {
+    void givenDefaultList_WhenCreateEmptyList_ThenAssertionSucceeds() {
         assertEquals(0, myList.size());
     }
 
@@ -50,7 +50,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenAnEmptyList_WhenAddTwoElements_ThenElementsAreInTheList() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         assertEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
@@ -93,7 +93,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenAListWithTwoElements_WhenRemoveElement_ThenElementIsNotInTheList() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         myList.remove(0);
         assertEquals(1, myList.size());
@@ -116,7 +116,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenAListWithTwoElements_WhenRemoveAll_ThenTheListIsEmpty() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         myList.removeAll();
 
@@ -158,7 +158,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenAListWithTwoElemnets_WhenGetPosition_ThenAssertionSucceeds() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         assertEquals(myList.get(0), PRIMERO);
         assertEquals(myList.get(1), SEGUNDO);
@@ -185,7 +185,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenTheSameList_WhenUseEquals_ThenShouldReturnTrue() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         MyList<String> myList2 = myList;
         assertEquals(myList, myList2);
@@ -193,7 +193,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenAList_WhenEqualsInCaseSameObjectInANewList_ThenShouldReturnTrue() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         MyList<String> myList2 = new MyListImpl1<>();
         myList2.add(PRIMERO);
@@ -203,7 +203,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenAListsWithDifferentLength_WhenUseEquals_ThenShouldReturnFalse() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
         MyList<String> myList2 = new MyListImpl1<>();
         myList2.add(PRIMERO);
         myList2.add(SEGUNDO);
@@ -214,7 +214,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenDifferentLists_WhenUseEquals_ThenShouldReturnFalse() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
         MyList<String> myList2 = new MyListImpl1<>();
         myList2.add(PRIMERO);
         myList2.add("A");
@@ -224,7 +224,7 @@ public class MyListImpl1Test {
 
     @Test
     void givenTwoObjects_WhenHasDifferentClasses_ThenEqualsShouldReturnFalse() {
-        prepareContextTestsWithTwoFile();
+        givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
         MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
         myMap.put(PRIMERO, PRIMERO);
         myMap.put(SEGUNDO, SEGUNDO);
@@ -232,7 +232,7 @@ public class MyListImpl1Test {
         assertNotEquals(myList, myMap);
     }
 
-    void prepareContextTestsWithTwoFile() {
+    void givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success() {
         myList.add(PRIMERO);
         myList.add(SEGUNDO);
     }
