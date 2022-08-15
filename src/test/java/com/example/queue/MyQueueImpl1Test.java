@@ -21,20 +21,20 @@ public class MyQueueImpl1Test {
     }
 
     @Test
-    void createEmptyListOk() {
+    void givenDefaultQueue_WhenCreateEmptyQueue_ThenAssertionSucceeds() {
         assertEquals(0, myQueue.size());
     }
 
     @Test
-    void addElementOK() {
-        prepareContextTestsWithASingleFile();
+    void givenAnEmptyQueue_WhenAddElement_ThenElementIsInTheQueue() {
+        myQueue.add(PRIMERO);
         assertEquals(1, myQueue.size());
         assertTrue(myQueue.contains(PRIMERO));
     }
 
     @Test
-    void addMultipleElementOK() {
-        prepareContextTestsWithTwoElements();
+    void givenAnEmptyQueue_WhenAddTwoElements_ThenElementsAreInTheQueue() {
+        givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success();
         //Assert
         assertEquals(2, myQueue.size());
         assertTrue(myQueue.contains(PRIMERO));
@@ -43,7 +43,7 @@ public class MyQueueImpl1Test {
 
     @ParameterizedTest
     @ValueSource(ints = { 88, 100, 120 })
-    void addMultipleElementWithGrowth_Ok(int length) {
+    void givenAnEmptyQueue_WhenAddIElementsWithFor_ThenElementsAreInTheQueue(int length) {
         for (int i = 0; i < length; i++) {
             myQueue.add("A" + i);
         }
@@ -55,15 +55,15 @@ public class MyQueueImpl1Test {
     }
 
     @Test
-    void peekOk() {
-        prepareContextTestsWithTwoElements();
+    void givenAnEmptyQueue_WhenAddElementsAndPeek_ThenAssertionSucceeds() {
+        givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success();
 
         assertEquals(PRIMERO, myQueue.peek());
     }
 
     @Test
-    void pollOK() {
-        prepareContextTestsWithTwoElements();
+    void givenAnEmptyQueue_WhenAddElementsAndPoll_ThenAssertionSucceeds() {
+        givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success();
 
         String actual = myQueue.poll();
 
@@ -73,8 +73,8 @@ public class MyQueueImpl1Test {
     }
 
     @Test
-    void given_ChangingStateTwoFiles_pollOk() {
-        prepareContextTestsWithTwoElements();
+    void givenAnEmptyQueue_WhenAddTwoElementsPollAndAdd_ThenAssertionSucceeds() {
+        givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success();
 
         String actual = myQueue.poll();
 
@@ -88,8 +88,8 @@ public class MyQueueImpl1Test {
     }
 
     @Test
-    void given_ChangingStateTreeFiles_PopOk() {
-        prepareContextTestsWithTreeFile();
+    void givenAnEmptyQueue_WhenAddTreeElementsPollAndAdd_ThenAssertionSucceeds() {
+        givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success();
         assertEquals(3, myQueue.size());
         assertTrue(myQueue.contains(PRIMERO));
         assertTrue(myQueue.contains(SEGUNDO));
@@ -108,13 +108,12 @@ public class MyQueueImpl1Test {
         assertEquals(SEGUNDO, actual2);
 
 //        myQueue.add(PRIMERO);
-//
 //        assertTrue(myQueue.contains(PRIMERO));
     }
 
     @Test
-    void removeAllOk() {
-        prepareContextTestsWithTwoElements();
+    void givenAQueueWithTwoElements_WhenRemoveAll_ThenTheQueueIsEmpty() {
+        givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success();
 
         myQueue.removeAll();
 
@@ -123,23 +122,19 @@ public class MyQueueImpl1Test {
     }
 
     @Test
-    void given_AnEmptyQueue_RemoveAllOk() {
+    void givenAnEmptyQueue_WhenRemoveAll_ThenTheQueueIsStillEmptyAndNotThrowsException() {
         myQueue.removeAll();
 
         assertEquals(0, myQueue.size());
         assertFalse(myQueue.contains(PRIMERO));
     }
 
-    void prepareContextTestsWithASingleFile() {
-        myQueue.add(PRIMERO);
-    }
-
-    void prepareContextTestsWithTwoElements() {
+    void givenAnEmptyQueue_ThenPrepareContextTestsWithTwoFile_Success() {
         myQueue.add(PRIMERO);
         myQueue.add(SEGUNDO);
     }
 
-    void prepareContextTestsWithTreeFile() {
+    void givenAnEmptyQueue_ThenPrepareContextTestsWithTreeFile_Success() {
         myQueue.add(PRIMERO);
         myQueue.add(SEGUNDO);
         myQueue.add(TERCERO);
