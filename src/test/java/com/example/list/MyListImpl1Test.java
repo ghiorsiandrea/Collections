@@ -25,31 +25,31 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void addElementOK() {
-        prepareContextTestWithASingleFile();
+    void givenAnEmptyList_WhenAddElement_ThenElementIsInTheList() {
+        myList.add(PRIMERO);
 
         assertEquals(1, myList.size());
         assertTrue(myList.contains(PRIMERO));
     }
 
     @Test
-    void given_AListWithOneElement_TheExpectedSizeIs1() {
-        prepareContextTestWithASingleFile();
+    void givenAnEmptyAnEList_WhenAddOneElement_ThenTheExpectedSizeIsOne() {
+        myList.add(PRIMERO);
 
         assertNotEquals(2, myList.size());
         assertTrue(myList.contains(PRIMERO));
     }
 
     @Test
-    void given_AListWithOneElement_ThenAssertNotContainsAnotherElement() {
-        prepareContextTestWithASingleFile();
+    void givenAnEmptyAnEList_WhenAddOneElement_ThenAssertNotContainsAnotherElement() {
+        myList.add(PRIMERO);
 
         assertEquals(1, myList.size());
         assertFalse(myList.contains("A"));
     }
 
     @Test
-    void given_AnEmptyList_addMultipleElement_OK() {
+    void givenAnEmptyList_WhenAddTwoElements_ThenElementsAreInTheList() {
         prepareContextTestsWithTwoFile();
 
         assertEquals(2, myList.size());
@@ -58,18 +58,21 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void addMultipleElementWithForOk() {
+    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheList() {
         for (int i = 0; i < 88; i++) {
             myList.add("A" + i);
+            assertTrue(myList.contains("A" + i));
         }
 
         assertEquals(88, myList.size());
+
     }
 
     @Test
-    void addMultipleElementGrowthOk() {
+    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheListAndTheListGrowth() {
         for (int i = 0; i < 100; i++) {
             myList.add("A" + i);
+            assertTrue(myList.contains("A" + i));
         }
 
         assertEquals(100, myList.size());
@@ -77,7 +80,7 @@ public class MyListImpl1Test {
 
     @ParameterizedTest
     @ValueSource(ints = {88, 100, 120})
-    void addMultipleElementWithForOk(int length) {
+    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheList(int length) {
         for (int i = 0; i < length; i++) {
             myList.add("A" + i);
         }
@@ -89,7 +92,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_AListWithTwoElemnets_RemoveMultipleElements_OK() {
+    void givenAListWithTwoElements_WhenRemoveElement_ThenElementIsNotInTheList() {
         prepareContextTestsWithTwoFile();
 
         myList.remove(0);
@@ -98,22 +101,21 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_AListWithTwoElemnets_ChangingState_RemoveMultipleElement_Ok() {
-        prepareContextTestsWithTwoFile();
-
+    void givenAListWithOneElement_WhenRemoveAndAddElement_ThenElementIsInTheList() {
+        myList.add(PRIMERO);
 
         myList.remove(0);
 
-        assertEquals(1, myList.size());
+        assertEquals(0, myList.size());
         assertFalse(myList.contains(PRIMERO));
 
-        prepareContextTestWithASingleFile();
+        myList.add(PRIMERO);
 
         assertTrue(myList.contains(PRIMERO));
     }
 
     @Test
-    void given_AListWithTwoElemnets_removeAllOk() {
+    void givenAListWithTwoElements_WhenRemoveAll_ThenTheListIsEmpty() {
         prepareContextTestsWithTwoFile();
 
         myList.removeAll();
@@ -123,7 +125,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_AnEmptyList_RemoveAllOk() {
+    void givenAnEmptyList_WhenRemoveAll_ThenTheListIsStillEmptyAndNotThrowsException() {
         myList.removeAll();
 
         assertEquals(0, myList.size());
@@ -131,7 +133,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    public void whenExceptionThrown_thenAssertionSucceedsINexistentElement() {
+    public void givenAnEmptyList_WhenExceptionThrown_ThenAssertionSucceedsINexistentElement() {
         int prueba = 50;
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myList.remove(prueba));
@@ -143,7 +145,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    public void whenExceptionThrown_thenAssertionSucceedsNegativeElement() {
+    public void givenAnEmptyList_WhenExceptionThrown_ThenAssertionSucceedsNegativeElement() {
         int prueba = -100;
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myList.remove(prueba));
@@ -155,7 +157,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_AListWithTwoElemnets_GetPositionOk() {
+    void givenAListWithTwoElemnets_WhenGetPosition_ThenResponseOk() {
         prepareContextTestsWithTwoFile();
 
         assertEquals(myList.get(0), PRIMERO);
@@ -177,12 +179,12 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_AnEmptyList_equalsInCaseSameObject_ShouldReturnTrue() {
+    void givenAnEmptyList_WhenInCaseSameObject_ThenEqualsShouldReturnTrue() {
         assertEquals(myList, myList);
     }
 
     @Test
-    void given_TheSameList_Then_EqualsShouldReturnTrue() {
+    void givenTheSameList_WhenUseEquals_ThenShouldReturnTrue() {
         prepareContextTestsWithTwoFile();
 
         MyList<String> myList2 = myList;
@@ -190,7 +192,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_AList_equalsInCaseSameObjectInANewList_ShouldReturnTrue() {
+    void givenAList_WhenEqualsInCaseSameObjectInANewList_ThenShouldReturnTrue() {
         prepareContextTestsWithTwoFile();
 
         MyList<String> myList2 = new MyListImpl1<>();
@@ -200,7 +202,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_ListsWithDifferentLength_Then_EqualsShouldReturnFalse() {
+    void givenAListsWithDifferentLength_WhenUseEquals_ThenShouldReturnFalse() {
         prepareContextTestsWithTwoFile();
         MyList<String> myList2 = new MyListImpl1<>();
         myList2.add(PRIMERO);
@@ -211,7 +213,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void given_DifferentLists_Then_EqualsShouldReturnFalse() {
+    void givenDifferentLists_WhenUseEquals_ThenShouldReturnFalse() {
         prepareContextTestsWithTwoFile();
         MyList<String> myList2 = new MyListImpl1<>();
         myList2.add(PRIMERO);
@@ -221,31 +223,18 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void whenHasDifferentClassesThenIsNotEquals() {
+    void givenTwoObjects_WhenHasDifferentClasses_ThenEqualsShouldReturnFalse() {
         prepareContextTestsWithTwoFile();
         MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
         myMap.put(PRIMERO, PRIMERO);
         myMap.put(SEGUNDO, SEGUNDO);
 
         assertNotEquals(myList, myMap);
-    }
-
-    @Test
-    void given_DifferentClasses_Then_EqualsShouldReturnFalse() {
-        prepareContextTestsWithTwoFile();
-        MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
-        myMap.put(PRIMERO, PRIMERO);
-        myMap.put(SEGUNDO, SEGUNDO);
-
-        assertNotEquals(myList, myMap);
-    }
-
-    void prepareContextTestWithASingleFile() {
-        myList.add(PRIMERO);
     }
 
     void prepareContextTestsWithTwoFile() {
         myList.add(PRIMERO);
         myList.add(SEGUNDO);
     }
+
 }
