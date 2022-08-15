@@ -20,7 +20,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void createEmptyListOk() {
+    void givenDefaultMap_WhenCreateEmptyList_ThenAssertionSucceeds() {
         assertEquals(0, myList.size());
     }
 
@@ -157,7 +157,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenAListWithTwoElemnets_WhenGetPosition_ThenResponseOk() {
+    void givenAListWithTwoElemnets_WhenGetPosition_ThenAssertionSucceeds() {
         prepareContextTestsWithTwoFile();
 
         assertEquals(myList.get(0), PRIMERO);
@@ -166,7 +166,7 @@ public class MyListImpl1Test {
 
     @ParameterizedTest
     @ValueSource(ints = {88, 100, 120})
-    void getPosWithForOk(int length) {
+    void givenAnEmptyList_WhenAddIElementsAnGetPosWithFor_ThenAssertionSucceeds(int length) {
         for (int i = 0; i < length; i++) {
             myList.add("A" + i);
         }
@@ -236,5 +236,4 @@ public class MyListImpl1Test {
         myList.add(PRIMERO);
         myList.add(SEGUNDO);
     }
-
 }
