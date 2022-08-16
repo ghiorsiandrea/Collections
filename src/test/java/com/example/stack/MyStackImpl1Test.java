@@ -42,7 +42,7 @@ public class MyStackImpl1Test {
 
     @ParameterizedTest
     @ValueSource(ints = {88, 100, 120})
-    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheList(int length) {
+    void givenAnEmptyList_WhenALotOfElementsAdded_ThenElementsAreInTheList(int length) {
         for (int i = 0; i < length; i++) {
             myStack.add("A" + i);
         }
@@ -111,7 +111,7 @@ public class MyStackImpl1Test {
     }
 
     @Test
-    void givenAnEmptyStack_WhenRemoveAll_ThenTheStackIsStillEmptyAndNotThrowsException() {
+    void givenAnEmptyStack_WhenRemoveAll_ThenTheStackIsStillEmpty() {
         myStack.removeAll();
 
         assertEquals(0, myStack.size());
