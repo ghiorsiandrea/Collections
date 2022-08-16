@@ -43,7 +43,7 @@ public class MyQueueImpl1Test {
 
     @ParameterizedTest
     @ValueSource(ints = { 88, 100, 120 })
-    void givenAnEmptyQueue_WhenAddIElementsWithFor_ThenElementsAreInTheQueue(int length) {
+    void givenAnEmptyQueue_WhenALotOfElementsAdded_ThenElementsAreInTheQueue(int length) {
         for (int i = 0; i < length; i++) {
             myQueue.add("A" + i);
         }
@@ -122,7 +122,7 @@ public class MyQueueImpl1Test {
     }
 
     @Test
-    void givenAnEmptyQueue_WhenRemoveAll_ThenTheQueueIsStillEmptyAndNotThrowsException() {
+    void givenAnEmptyQueue_WhenRemoveAll_ThenTheQueueIsStillEmpty() {
         myQueue.removeAll();
 
         assertEquals(0, myQueue.size());
