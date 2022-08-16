@@ -39,7 +39,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    public void givenAnEmptyMap_WhenPutNullKeyAndExceptionThrown_ThenAssertionSucceeds() {
+    public void givenAnEmptyMap_WhenPutNullKey_ThenExceptionThrown() {
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myMap.put(null, VPRIMERO));
         String expectedMessage = "The key can not be null.";
@@ -67,7 +67,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    void givenAnEmptyMap_WhenPutIElementsWithFor_ThenElementsAreInTheMap() {
+    void givenAnEmptyMap_WhenALotOfElementsPutted_ThenElementsAreInTheMap() {
         for (int i = 0; i < 88; i++) {
             myMap.put(i + 1, "A" + i);
         }
@@ -76,7 +76,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    void givenAnEmptyMap_WhenPutIElementsWithFor_ThenElementsAreInTheMapAndTheMapGrowth() {
+    void givenAnEmptyMap_WhenALotOfElementsPutted_ThenElementsAreInTheMapAndTheMapGrowth() {
         for (int i = 0; i < 100; i++) {
             myMap.put(i + 1, "00" + i);
         }
@@ -93,7 +93,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    public void givenAnEmptyMap_WhenRemoveNullKeyAndExceptionThrown_ThenAssertionSucceeds() {
+    public void givenAnEmptyMap_WhenRemoveNullKey_ThenExceptionThrown() {
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myMap.remove(null));
         String expectedMessage = "The key can not be null.";
@@ -102,7 +102,7 @@ public class MyMapImpl1Tests {
     }
 
     @Test
-    public void givenAnEmptyMap_WhenRemoveInexistentKeyAndExceptionThrown_ThenAssertionSucceeds() {
+    public void givenAnEmptyMap_WhenRemoveNonExistentKey_ThenExceptionThrown() {
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myMap.remove(50));
         String expectedMessage = "The key is not present in this Map";
