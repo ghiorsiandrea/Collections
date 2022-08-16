@@ -20,7 +20,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenDefaultList_WhenCreateEmptyList_ThenAssertionSucceeds() {
+    void givenDefaultList_WhenCreateEmptyList_ThenTheSizeIsZero() {
         assertEquals(0, myList.size());
     }
 
@@ -41,7 +41,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenAnEmptyAnEList_WhenAddOneElement_ThenAssertNotContainsAnotherElement() {
+    void givenAnEmptyAnEList_WhenAddOneElement_ThenTheListNotContainsAnotherElement() {
         myList.add(PRIMERO);
 
         assertEquals(1, myList.size());
@@ -58,7 +58,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheList() {
+    void givenAnEmptyList_WhenALotOfElementsAdded_ThenElementsAreInTheList() {
         for (int i = 0; i < 88; i++) {
             myList.add("A" + i);
             assertTrue(myList.contains("A" + i));
@@ -69,7 +69,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheListAndTheListGrowth() {
+    void givenAnEmptyList_WhenOneHundredElementsAdded_ThenElementsAreInTheListAndTheListGrowth() {
         for (int i = 0; i < 100; i++) {
             myList.add("A" + i);
             assertTrue(myList.contains("A" + i));
@@ -80,7 +80,7 @@ public class MyListImpl1Test {
 
     @ParameterizedTest
     @ValueSource(ints = {88, 100, 120})
-    void givenAnEmptyList_WhenAddIElementsWithFor_ThenElementsAreInTheList(int length) {
+    void givenAnEmptyList_WhenALotOfElementsAddedAnGetPos_ThenElementsAreInTheList(int length) {
         for (int i = 0; i < length; i++) {
             myList.add("A" + i);
         }
@@ -88,6 +88,7 @@ public class MyListImpl1Test {
         assertEquals(length, myList.size());
         for (int i = 0; i < length; i++) {
             assertTrue(myList.contains("A" + i));
+            assertEquals(myList.get(i), "A" + i);
         }
     }
 
@@ -125,7 +126,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenAnEmptyList_WhenRemoveAll_ThenTheListIsStillEmptyAndNotThrowsException() {
+    void givenAnEmptyList_WhenRemoveAll_ThenTheListIsStillEmpty() {
         myList.removeAll();
 
         assertEquals(0, myList.size());
@@ -133,7 +134,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    public void givenAnEmptyList_WhenExceptionThrown_ThenAssertionSucceedsINexistentElement() {
+    public void givenAnEmptyList_WhenRemoveNonexistentPosition_ThenExceptionIsThrown() {
         int prueba = 50;
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myList.remove(prueba));
@@ -145,7 +146,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    public void givenAnEmptyList_WhenExceptionThrown_ThenAssertionSucceedsNegativeElement() {
+    public void givenAnEmptyList_WhenRemoveNegativeElement_ThenExceptionThrown() {
         int prueba = -100;
         Exception exception = assertThrows(IllegalArgumentException.class, ()
                 -> myList.remove(prueba));
@@ -157,26 +158,13 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenAListWithTwoElemnets_WhenGetPosition_ThenAssertionSucceeds() {
+    void givenAListWithTwoElements_WhenGetThem_ThenResultElementsAreTheSame() {
         givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         assertEquals(myList.get(0), PRIMERO);
         assertEquals(myList.get(1), SEGUNDO);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {88, 100, 120})
-    void givenAnEmptyList_WhenAddIElementsAnGetPosWithFor_ThenAssertionSucceeds(int length) {
-        for (int i = 0; i < length; i++) {
-            myList.add("A" + i);
-        }
-
-        assertEquals(length, myList.size());
-
-        for (int i = 0; i < length; i++) {
-            assertEquals(myList.get(i), "A" + i);
-        }
-    }
 
     @Test
     void givenAnEmptyList_WhenInCaseSameObject_ThenEqualsShouldReturnTrue() {
@@ -184,15 +172,15 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenTheSameList_WhenUseEquals_ThenShouldReturnTrue() {
+    void givenTwoListVariables_WhenCompareThemWithEquals_ThenShouldReturnTrue() {
         givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
-
         MyList<String> myList2 = myList;
+
         assertEquals(myList, myList2);
     }
 
     @Test
-    void givenAList_WhenEqualsInCaseSameObjectInANewList_ThenShouldReturnTrue() {
+    void givenAListInCaseSameObjectInANewList_WhenUseEquals_ThenShouldReturnTrue() {
         givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
 
         MyList<String> myList2 = new MyListImpl1<>();
@@ -223,7 +211,7 @@ public class MyListImpl1Test {
     }
 
     @Test
-    void givenTwoObjects_WhenHasDifferentClasses_ThenEqualsShouldReturnFalse() {
+    void givenTwoObjectsHasDifferentClasses_WhenUseEquals_ThenShouldReturnFalse() {
         givenAnEmptyList_ThenPrepareContextTestsWithTwoFile_Success();
         MyMapImpl1<String, String> myMap = new MyMapImpl1<>();
         myMap.put(PRIMERO, PRIMERO);
