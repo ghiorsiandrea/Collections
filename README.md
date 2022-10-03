@@ -15,7 +15,7 @@
 <br>
 <br>
 
-`In this project we will work with my own implementation of:`
+``In this project we will work with my own implementation of:``
 
 <br>
 ✅ List <br>
@@ -23,6 +23,12 @@
 ✅ Queue <br>
 ✅ Stack <br>
 <br>
+<br>
+
+`Each implementation has its respective tests with a coverage
+greater than 90%`
+
+
 <br>
 
 This project was created following "Pildoras Informaticas" 's YouTube Java course.
